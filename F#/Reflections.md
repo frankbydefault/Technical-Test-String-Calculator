@@ -24,3 +24,7 @@ Then I had to pack all my steps in one function to execute them in order. For th
 `func1 |> func2 |> func3`.  I read `|>` as **"Goes to"**, since is like "this data goes to this function" it was pretty similar to making RAGS in airflow and so I just treated my code as a data pipeline.
 
 **Note:** Even if F# autodetects the types of data, I still especified my input and output data. Actually Ionide extension in vscode helped me a lot with the input and output data types, that's why I specified them in the functions, and I think is good to do so you don't end up passing stuff that it shouldn't.
+
+## Task 2: Infinite Arithmetic
+
+I didn't add any modifications from Task 1. Since the solution already handles any string size.
