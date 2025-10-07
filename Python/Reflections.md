@@ -47,3 +47,10 @@ The last exceptions were direct, but for "Not negative values allowed" exception
 I had to store the negative numbers, so I created an empty list on which it adds the negative numbers as it finds them. So, for the validation I checked if the array was empty, if not I printed the error message and added the array as a string. If it was empty then there where no negative numbers found.
 
 Since I was aading an exception, then I also modified my other edge cases to have an exception instead of returning 0. So is more descriptive of what is actually happening and why is failing.
+
+
+## Task 6: Ignoring Giants
+
+This task was more straight foward. As in the last task, I implemented the filtering requirement by adding a conditional statement inside the loop.
+
+The problem said that we should ignore numbers larger than 1000, so I only counted numbers being 1000 or smaller. So, any number bigger than 1000 is skipped and not included in the final sum.
