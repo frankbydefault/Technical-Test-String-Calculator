@@ -38,3 +38,12 @@ Example:
 `"//\n123-790"`
 
 How do I tell if `123` is `1`, `2` and `3` or if `123`. Same with `-7` or `-790`. Too much edge cases, and it over complicated the solution, so for my *mental peace* I just don't accept empty delimeter.
+
+
+## Task 5: Negative Rebellion
+
+The last exceptions were direct, but for "Not negative values allowed" exception has more layers to it. The challenging part is composing the error message, since it had to list all negative numbers from the input string. Initially, I considered simply checking if the string contained any `'-'` characters and stopping at the first negative, but then I realized two things: one that the string can be separated by `-` and also I needed to collect all negative numbers to output them in the the error message.
+
+I had to store the negative numbers, so I created an empty list on which it adds the negative numbers as it finds them. So, for the validation I checked if the array was empty, if not I printed the error message and added the array as a string. If it was empty then there where no negative numbers found.
+
+Since I was aading an exception, then I also modified my other edge cases to have an exception instead of returning 0. So is more descriptive of what is actually happening and why is failing.
