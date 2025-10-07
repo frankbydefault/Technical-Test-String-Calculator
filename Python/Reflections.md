@@ -28,3 +28,13 @@ sum = 0
 ```
 
 But i realised that it fails to recognize more than one digit or negative numbers. Since it just evaluates one character in the string, and for those two cases handleing more than one character is needed. To handle numbers bigger tahn 10 I would have to implement a two pointer solution or something that can get all consecutive numbers. Because of this, I dicarded it, since at this point it was easier using `replace()` even though it makes the solution more specific.
+
+
+## Task 4: Custom Delimeters
+
+Firsly there is one new edge case: the delimiter can be an empty string `""`, in this case I don't `split("")` since is going to throw an error, because an empty separator is not allowed. So in this case I `return 0` because if there is no separator, then I cannot tell if is a single digit or multiple digits or if is negative. So, I added the mandatory condition that a separator needs to be specified.
+
+Example:
+`"//\n123-790"`
+
+How do I tell if `123` is `1`, `2` and `3` or if `123`. Same with `-7` or `-790`. Too much edge cases, and it over complicated the solution, so for my *mental peace* I just don't accept empty delimeter.
