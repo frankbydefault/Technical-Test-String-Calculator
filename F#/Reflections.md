@@ -28,3 +28,12 @@ Then I had to pack all my steps in one function to execute them in order. For th
 ## Task 2: Infinite Arithmetic
 
 I didn't add any modifications from Task 1. Since the solution already handles any string size.
+
+## Task 3: Breaking Newlines
+
+Basically I mantained the structure but made a modification to the `splitString` function. I hard coded an array of the input separators, then applied them into the `split()` method. Made me really happy to see that in F# the `split` can handle multiple separators in one go, it works more like a "filter everithing that is in this list" and it saves me extra lines of code. I don't know why Pyhton `split` doen't allow this, makes so much sence.
+
+Some extra logic I had to add was a way to remove empty strings, since I also added a new edge case: What if we have consecutive separators, like `"1,,2"`. The `split` would produce a list `['1', '', '2']` and the sum will fail.
+
+**Note:** In the documentation there is an example with `split()` to handle empty or white spaces like `let subs = s.Split(separators, StringSplitOptions.RemoveEmptyEntries)` but I couldn't manage to make it work, so I just made a filter manually using a anonymous function.
+
