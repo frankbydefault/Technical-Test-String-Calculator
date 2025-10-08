@@ -18,3 +18,10 @@ module Task2 =
             |> splitString 
             |> stringToInt 
             |> sum
+
+let tests = [| "1,2,3"; "80,4,5"|]
+
+Array.map (fun value ->
+    let result = Task2.SumStringNums value
+    printfn "%d" result
+) tests

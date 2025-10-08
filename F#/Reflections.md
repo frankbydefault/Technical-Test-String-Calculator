@@ -98,3 +98,12 @@ And to get rid of the big numbers, I just have to `FindAll` the smaller numbers:
 ```
 
 I decided to replace my earlier usage of `FindAll(nums, fun x-> x < 0)` with `Array.filter(fun x-> x < 0)` to keep consistency and within F#. Since `FindAll` is part of .NET system and not native to F# so the return of the methd gets wrapped for it to be used in F#. If I can stay within F#’s own standard functions, I prefer to do so. There are some exception like my edge conditions where I see inf the string is null or are white spaces `String.IsNullOrWhiteSpace`, which is a method from .net, but I find it reasonable to use it here because it helps readability and it lets me check multiple conditions in one.
+
+
+## Figuring Out structure and execution of project
+
+All my tasks are currently in .fsx files. From what I understand, .fsx files are primarily intended for testing and small things, while .fs files are meant for production code or projects. So thats why I chose `.fsx` in this case.
+
+Initially, I was testing my code using fsi, and when a task was finished, I would "move it to production" by calling it from `Program.fs`. After completing a few tasks, this approach became tedious, since I had to constantly modify `Program.fs` to run different scripts, which was a pain and many times I forgot to updated it.
+
+I decided to stick with fsi for now because it is much easier. Otherwise, I would need to convert my `.fsx` files to `.fs` and manage them from `Program.fs`. Due to time constraints, I instead added a tests array with some input values, and then mapped through the array, applying SumStringNums to each item and printing the results.

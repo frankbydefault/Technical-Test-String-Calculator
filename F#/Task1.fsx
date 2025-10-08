@@ -1,4 +1,3 @@
-
 module Task1 = 
     let sum (nums: int array) : int = 
         Array.sum nums
@@ -17,3 +16,11 @@ module Task1 =
             |> splitString 
             |> stringToInt 
             |> sum
+
+let tests = [| "1,2"|]
+
+Array.map (fun value ->
+    let result = Task1.SumStringNums value
+    printfn "%d" result
+) tests
+

@@ -29,3 +29,10 @@ module Task4 =
                 |> applyDelim
                 |> stringToInt
                 |> sum
+
+let tests = [| "//;\n2;3"; "//\n" ; "\n123"|]
+
+Array.map (fun value ->
+    let result = Task4.SumStringNums value
+    printfn "%d" result
+) tests

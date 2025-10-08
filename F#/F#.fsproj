@@ -11,7 +11,8 @@
       <Compile Include="Task2.fsx" />
       <Compile Include="Task3.fsx" />
       <Compile Include="Task4.fsx" />
-  <Compile Include="Program.fs" />
+      <Compile Include="Task5.fsx" />
+      <Compile Include="Task6.fsx" />
   </ItemGroup>
 
 </Project>

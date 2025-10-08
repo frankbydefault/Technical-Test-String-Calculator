@@ -44,4 +44,9 @@ module Task5 =
             |> lookForNegatives 
             |> sum
 
-Task5.SumStringNums "//;\n1;2;  ;-3"
+let tests = [| "//;\n2;-3"; "//\n" ; "\n123"|]
+
+Array.map (fun value ->
+    let result = Task5.SumStringNums value
+    printfn "%d" result
+) tests

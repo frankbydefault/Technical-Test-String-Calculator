@@ -1,6 +1,6 @@
 open System
 
-module Task5 = 
+module Task6 = 
     let sum (nums: int array) : int = 
         nums |> Array.filter(fun x-> x <= 1000) |> Array.sum
 
@@ -44,7 +44,9 @@ module Task5 =
             |> lookForNegatives 
             |> sum
 
-Task5.SumStringNums "//;\n1;2;  ;-3"
+let tests = [| "//;\n1;2000;6"; "//;\n1001;2000;6000";|]
 
-
-Task5.sum [|1;2;3000|]
+Array.map (fun value ->
+    let result = Task6.SumStringNums value
+    printfn "%d" result
+) tests
