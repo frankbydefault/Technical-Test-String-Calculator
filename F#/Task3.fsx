@@ -1,6 +1,4 @@
-open System
-
-module Task1 = 
+module Task3 = 
     let sum (nums: int array) : int = 
         Array.sum nums
 
@@ -20,6 +18,3 @@ module Task1 =
             |> splitString 
             |> stringToInt 
             |> sum
-
-
-Task1.SumStringNums "1, ,2\n3"  
