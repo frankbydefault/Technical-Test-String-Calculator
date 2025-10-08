@@ -1,7 +1,9 @@
-open Task1
+open Task4
 
-let  test1= "1,2,3,4,5,6,7"
+let  test1= ";\n1;2"
 let  test2= "   "
-let result = Task1.SumStringNums test2
+
+let test3 = "//;\n"
+let result = Task4.SumStringNums test3
 printfn "%d" result  // Output: 6
 

@@ -31,9 +31,40 @@ I didn't add any modifications from Task 1. Since the solution already handles a
 
 ## Task 3: Breaking Newlines
 
-Basically I mantained the structure but made a modification to the `splitString` function. I hard coded an array of the input separators, then applied them into the `split()` method. Made me really happy to see that in F# the `split` can handle multiple separators in one go, it works more like a "filter everithing that is in this list" and it saves me extra lines of code. I don't know why Pyhton `split` doen't allow this, makes so much sence.
+Basically I mantained the structure but made a modification to the `splitString` function. I hard coded an array of the input separators, then applied them into the `split()` method. Made me really happy to see that in F# the `split` can handle multiple separators in one go, it works more like a "filter everything that is in this list" and it saves me extra lines of code. I don't know why Pyhton `split` doen't allow this, makes so much sence.
 
 Some extra logic I had to add was a way to remove empty strings, since I also added a new edge case: What if we have consecutive separators, like `"1,,2"`. The `split` would produce a list `['1', '', '2']` and the sum will fail.
 
+Also kodified the base edge case. Is pretty common to have a methods like .isEmpty() already built in, so I searched for something like that. This got me in a rabbit hole on understanding `null` and `None`. Since F# can use some stuff from C#, then many things get mixed. In F# there is only `None` but `null` is supported as is used in C#. Any way I changed my aproach of `if str = null || str = "" then` to a more simpler and readable `if String.IsNullOrWhiteSpace str`.
+
 **Note:** In the documentation there is an example with `split()` to handle empty or white spaces like `let subs = s.Split(separators, StringSplitOptions.RemoveEmptyEntries)` but I couldn't manage to make it work, so I just made a filter manually using a anonymous function.
 
+## Task 4: Custom Delimeters
+
+This task made me re-structure some of my code. Firstly, I had to add more instructions, so more functions:
+
+1.Get the input string  
+2. Check if it’s empty  
+3. Divide the string into two parts using `\n`  
+4. Extract the delimiter from the first part — **this made a domino effect**
+5. Apply the delimiter to the second part  
+6. Convert the resulting array into integers  
+7. Sum the numbers 
+
+
+So, in step 4, I had to check if the delimiter was empty and return 0 if it wasn't valid. Until task 3, I had thought of my code as a pipeline; the output of one function goes to the next, and so on. The problem is that if I start checking the edge cases inside my pipeline functions, I have to return two types of values: the intended and the exception (Until now is just 0). It will not stop the code but will transfer that return value of 0 to the next function, causing many errors and a headache. So I decided to handle all the edge cases inside my "main" function `SumStringNums`.
+
+## Some more edge cases
+Another thing I realized from the analysis of **Step 4** is that until now, I have only been partially checking the format of my input string. Since it is a pipeline, I actually need to be 100% sure it has the correct format. Any value that differs can explode the flow of data, so what goes in has to be exactly what is expected so nothing goes wrong. So I added more checks:
+
+1. See if the input string has the newline separator \n.
+2. See if the part that has the delimiter has the slashes //. This is because if I do not check that is has `//` then something like `"    "` would pass the next edge case.
+3. See if the delimiter part has more than two characters. If it is only //, then there are two characters, and thus no delimiter is defined.
+4. See if the numbers part has content; if it has less tah one character 1, it is considered empty.
+
+```
+1. "//;1;3;4;" 
+2. "   " -> if len > 2 -> True
+3. "//" -> if len > 2 -> Flase
+4. "//;\n"
+```

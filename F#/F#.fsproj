@@ -8,6 +8,9 @@
 
   <ItemGroup>
       <Compile Include="Task1.fsx" />
+      <Compile Include="Task2.fsx" />
+      <Compile Include="Task3.fsx" />
+      <Compile Include="Task4.fsx" />
   <Compile Include="Program.fs" />
   </ItemGroup>
 

@@ -54,3 +54,9 @@ Since I was aading an exception, then I also modified my other edge cases to hav
 This task was more straight foward. As in the last task, I implemented the filtering requirement by adding a conditional statement inside the loop.
 
 The problem said that we should ignore numbers larger than 1000, so I only counted numbers being 1000 or smaller. So, any number bigger than 1000 is skipped and not included in the final sum.
+
+## Task 7: Flexible Delimeters
+
+My first approach was to figure out how to extract the delimiter from inside the brackets. I wanted to extract everything inside `[]` in one go because i knew I could. The other option was looping through the entire delimiter string and appending all characters that were not a bracket and I didn't think that was necesary since is was just one bracket pair.
+
+I know that python has this thing `[-1]` to get the last position of an array, so in theory, if I have a string `[***]` the `[0]`and `[-1]` are the the indexes of the brackets, so I can cut the delimeter from `[1]` to `[-1]`,to get the delimeter. This way it does not matter the lenght because the`[` bracket will always be first and the `]` will always be last.
