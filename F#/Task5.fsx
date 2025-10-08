@@ -4,40 +4,44 @@ module Task5 =
     let sum (nums: int array) : int = 
         Array.sum nums
 
-    let hasNegatives(nums:int array): int array=
+    let lookForNegatives(nums:int array): int array=
         let negatives = Array.FindAll(nums, fun x-> x < 0)
         
         if not (Array.isEmpty negatives) then
             let concatNegatives = negatives |> Array.map string |> String.concat ", "
             raise (System.Exception($"Exception: negatives not allowed {concatNegatives}"))
-        
-        nums
+        else
+            nums
 
     let stringToInt (nums: string array) : int array = 
         nums |> Array.map int
 
-    let extractDelim (str: string array): string array =
-        str.[0] <- str.[0].[2..]
-        str
+    let extractDelim (parts: string array): string array =
+        if not (parts[0].StartsWith("//")) || parts[0].Length < 3 then // if less tha three then there is onlly //
+            raise (System.Exception("Incorrect delimiter format, missing // or no delimeter especified."))
+        
+        else
+        parts.[0] <- parts.[0].[2..]
+        parts
 
     let applyDelim (parts: string array): string array =
-        parts[1].Split parts[0]
-        |> Array.filter (fun i-> not (i.Trim() = ""))
+        if String.IsNullOrWhiteSpace parts[1] then
+            raise (System.Exception("Number string empty"))
+        else
+            parts[1].Split parts[0]
+            |> Array.filter (fun i-> not (i.Trim() = ""))
 
     let SumStringNums (str: string) : int =
         if String.IsNullOrWhiteSpace str || not(str.Contains "\n") then
-            0
+            raise (System.Exception("No input defined or does not contain newline separation."))
         else
             let parts = str.Split "\n"
 
-            if parts.[0].Length < 2 || parts[1].Length < 1 then // to see if the delimeter part is empty or only composed by //
-                0
-            else
-                parts
-                |> extractDelim 
-                |> applyDelim
-                |> stringToInt
-                |> hasNegatives 
-                |> sum
+            parts
+            |> extractDelim 
+            |> applyDelim
+            |> stringToInt
+            |> lookForNegatives 
+            |> sum
 
-Task5.SumStringNums "//;\n1;-2;-3;-7"
+Task5.SumStringNums "//;\n1;2;  ;-3"
