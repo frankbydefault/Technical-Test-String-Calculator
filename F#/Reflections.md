@@ -68,3 +68,9 @@ Another thing I realized from the analysis of **Step 4** is that until now, I ha
 3. "//" -> if len > 2 -> Flase
 4. "//;\n"
 ```
+
+## Task 5: Custom Delimeters
+
+In contrast to my code in python, on which I check for the negatove numbers within the same loop where I sum, here I made a new function `hasNegatives` where I apply the `findAll` with a lambda function to find all numbers less than 0. Then I use the same logic as my python code, see if the array is empty or not. If has values, then raise the Exception, if not return the array `nums` intact. For the Exception message I had to convert the array elements into strings and then concatenate them so I could add them into the message.
+
+In las task I mentioned that I was controlling all the edge cases in my "main" function `SumStringNums` since my error notification was returning 0, so that messed up with my data pipeline I had defined. But now I think I will shift that approach to handle the Exceptions inside each function, so I have everything contained in the things that they relate to. So if I have apply the delimeter, then before I do anything I check the edge cases and return an Exception if it fails. That way it looks organized and less cluttered.
