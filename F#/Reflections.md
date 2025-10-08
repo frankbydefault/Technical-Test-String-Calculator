@@ -79,3 +79,22 @@ In last task I mentioned that I was controlling all the edge cases in my "main" 
 1. I added Expections to `applyDelim`, because if I whant to split a string, then I need that string to not be empty.
 2. In `extractDelim` I added a new condition to check if starts with `//` since I was only checking the length and if there is no `//` then it could mess up the extraction of the delimiter, since I'm choosing everything after the second character in the string `[2..]`.
 3. In `SumStringNums` insted of returning 0 I change it to rise an exception.
+
+## Task 6: Ignoring Giants
+
+For this task I had to just make a minor adjustment. I modified my `sum` function to filter out the numbers bigger than 1000. Similar to my Python code, it worked the same way as in Task 5, where I handled this logic within the summation loop.
+
+### Some realizations not related to the actual objective of the task
+One thing I realized is the use of `Filter` and `FindAll` methods of Array. When I *get all* the negatives I use `FindAll` and when I need to *get rid* of bigger numbers I used `Filter`. At the time I didn't realized that They are pretty similar: 
+
+To find the negatives uding `Filter` is the same condition $x < 0$:
+```F#
+ Array.filter(fun x-> x < 0)
+```
+
+And to get rid of the big numbers, I just have to `FindAll` the smaller numbers:
+```F#
+ Array.FindAll(nums,fun x-> x < 1000)
+```
+
+I decided to replace my earlier usage of `FindAll(nums, fun x-> x < 0)` with `Array.filter(fun x-> x < 0)` to keep consistency and within F#. Since `FindAll` is part of .NET system and not native to F# so the return of the methd gets wrapped for it to be used in F#. If I can stay within F#’s own standard functions, I prefer to do so. There are some exception like my edge conditions where I see inf the string is null or are white spaces `String.IsNullOrWhiteSpace`, which is a method from .net, but I find it reasonable to use it here because it helps readability and it lets me check multiple conditions in one.
