@@ -28,9 +28,8 @@ module Task6 =
         if String.IsNullOrWhiteSpace parts[1] then
             raise (System.Exception("Number string empty"))
         else
-            parts[1].Split parts[0]
-            |> Array.filter (fun i-> not (i.Trim() = ""))
-
+            parts[1].Split(parts[0], StringSplitOptions.RemoveEmptyEntries) 
+            
     let SumStringNums (str: string) : int =
         if String.IsNullOrWhiteSpace str || not(str.Contains "\n") then
             raise (System.Exception("No input defined or does not contain newline separation."))
