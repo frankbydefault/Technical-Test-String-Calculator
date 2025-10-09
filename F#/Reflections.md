@@ -107,3 +107,38 @@ All my tasks are currently in .fsx files. From what I understand, .fsx files are
 Initially, I was testing my code using fsi, and when a task was finished, I would "move it to production" by calling it from `Program.fs`. After completing a few tasks, this approach became tedious, since I had to constantly modify `Program.fs` to run different scripts, which was a pain and many times I forgot to updated it.
 
 I decided to stick with fsi for now because it is much easier. Otherwise, I would need to convert my `.fsx` files to `.fs` and manage them from `Program.fs`. Due to time constraints, I instead added a tests array with some input values, and then mapped through the array, applying SumStringNums to each item and printing the results.
+
+
+## Task 7: Flexible Delimeters
+
+This task was only centered arround my `extractDelim` function, as the name says, here is where I extract the delimeter.
+
+I made a lot of changes to the function. I made some quality changes to make the code easier to read. Because previosly, I was receiving an array and accessing its elements by index, so I assigned each element with a name, so it’s easier to follow what each one represents.
+
+Next, I corrected a mistake I made in Tasks 6. I had used `if delimiter.Length < 2` to check if the delimiter was empty. But in the case that we have only `//` this condition would pass, even though dere is no delimiter. So, corrected it to be `if delimiter.Length < 3`.
+
+Something that I got reminded of, is that `let` inside `if` statements do not exist outside their block as happens in C# or java because of scopes {}.  had assumed that scopes in F# were mostly function level but no. F# is pretty much Python looks but C# rules. I'm so used to having `{}` define scopes, that I mindlessly tried to handle the as I would do in python and assumed it would work:
+
+```F#
+if auxDelimeter.StartsWith("[") && auxDelimeter.EndsWith("]") then
+            let finalDelimeter = auxDelimeter.Substring(1, auxDelimeter.Length - 2)
+        else
+            auxDelimeter
+```
+Got the error `finalDelimeter` didn’t exist outside this scope. I figured that since `let finalDelimeter` is basically a function, then I define is as the result of the condition and it worked.
+
+```F#
+let finalDelimeter = 
+        if auxDelimeter.StartsWith("[") && auxDelimeter.EndsWith("]") then
+            auxDelimeter.Substring(1, auxDelimeter.Length - 2)
+        else
+            auxDelimeter
+```
+
+My final change was making `extractDelim` return a tuple of strings ,instead of a string array. This so I can treat them separately with their own name. As I do in my python code where I do:
+
+```python
+delimeter , nums = string.split('\n')
+```
+
+Because of this change, I also modified the input of `applyDelim`(the next function in the pipeline) so that it receives two separate strings instead of the array.

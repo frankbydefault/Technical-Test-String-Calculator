@@ -17,7 +17,7 @@ module Task6 =
         nums |> Array.map int
 
     let extractDelim (parts: string array): string array =
-        if not (parts[0].StartsWith("//")) || parts[0].Length < 2 then // if less tha three then there is onlly //
+        if not (parts[0].StartsWith("//")) || parts[0].Length < 3 then // if less tha three then there is only //
             raise (System.Exception("Incorrect delimiter format, missing // or no delimeter especified."))
         
         else
