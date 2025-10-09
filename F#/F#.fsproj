@@ -13,6 +13,8 @@
       <Compile Include="Task4.fsx" />
       <Compile Include="Task5.fsx" />
       <Compile Include="Task6.fsx" />
+      <Compile Include="Task7.fsx" />
   </ItemGroup>
 
 </Project>
+
